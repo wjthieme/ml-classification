@@ -1,0 +1,7 @@
+
+platform :ios, '13.0'
+
+target 'MLClassification' do
+  pod 'TensorFlowLiteSwift'
+  pod 'TensorFlowLiteSwift/CoreML'
+end
