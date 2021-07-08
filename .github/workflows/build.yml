@@ -1,13 +1,14 @@
-name: Sonar
+name: Build
 on:
   push:
     branches:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
+  workflow_dispatch:
 jobs:
-  sonarcloud:
-    name: SonarCloud
+  sonar:
+    name: Sonar
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
