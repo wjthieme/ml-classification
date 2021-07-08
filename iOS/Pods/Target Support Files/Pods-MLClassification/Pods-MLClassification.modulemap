@@ -1,6 +1,0 @@
-module Pods_MLClassification {
-  umbrella header "Pods-MLClassification-umbrella.h"
-
-  export *
-  module * { export * }
-}
