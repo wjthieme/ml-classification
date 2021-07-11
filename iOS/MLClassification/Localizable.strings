@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  MLClassification
+
+  Created by Wilhelm Thieme on 11/07/2021.
+  
+*/
+"settings" = "Settings";
+"cameraAuthrorisation" = "Please give permission for the camera to use the app.";
+"scanning" = "Scanning";
+"cancel" = "Cancel";

@@ -9,20 +9,19 @@ import UIKit
 import AVFoundation
 import TensorFlowLite
 
-class BufferService: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
+class MLService: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     private var model: Interpreter?
-    
     private weak var predictionLabel: UIButton?
     
     init(_ label: UIButton) {
         self.predictionLabel = label
         super.init()
-        NotificationCenter.default.addObserver(self, selector: #selector(tryLoadModel), name: MetaService.updatedModelNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(tryLoadModel), name: QRService.updatedModelNotification, object: nil)
         tryLoadModel()
     }
     
     @objc private func tryLoadModel() {
-        model = try? Interpreter(modelPath: Constants.modelUrl.path)
+        model = try? Interpreter(modelPath: Delegate.modelUrl.path)
         try? model?.allocateTensors()
     }
     

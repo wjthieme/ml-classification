@@ -17,16 +17,16 @@ class Controller: UIViewController {
     private let switchButton = UIButton()
     private let predictionLabel = UIButton()
     private var isCapturesSessionBuilt = false
-    private var metaDelegate: MetaService?
-    private var bufferDelegate: BufferService?
+    private var qrService: QRService?
+    private var mlService: MLService?
     private var cameraPosition = AVCaptureDevice.Position.back
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(shouldBuildCaptureSession), name: UIApplication.willEnterForegroundNotification, object: nil)
         
-        metaDelegate = MetaService(self)
-        bufferDelegate = BufferService(predictionLabel)
+        qrService = QRService(self)
+        mlService = MLService(predictionLabel)
         
         let switchConfig = UIImage.SymbolConfiguration(pointSize: 26)
         let switchIcon = UIImage(systemName: "arrow.triangle.2.circlepath.camera.fill", withConfiguration: switchConfig)
@@ -72,12 +72,12 @@ class Controller: UIViewController {
         
         let metaOutput = AVCaptureMetadataOutput()
         captureSession?.addOutput(metaOutput)
-        metaOutput.setMetadataObjectsDelegate(metaDelegate, queue: Constants.metaQueue)
+        metaOutput.setMetadataObjectsDelegate(qrService, queue: DispatchQueue.global())
         metaOutput.metadataObjectTypes = [.qr]
         
         let bufferOutput = AVCaptureVideoDataOutput()
         captureSession?.addOutput(bufferOutput)
-        bufferOutput.setSampleBufferDelegate(bufferDelegate, queue: Constants.bufferQueue)
+        bufferOutput.setSampleBufferDelegate(mlService, queue: DispatchQueue.global())
         bufferOutput.alwaysDiscardsLateVideoFrames = true
         
         captureSession?.commitConfiguration()
@@ -122,7 +122,7 @@ class Controller: UIViewController {
     }
     
     private func showAuthorizationAlert() {
-        let alert = UIAlertController(title: nil, message: NSLocalizedString("cameraAuthrorisationAlertMessage", comment: ""), preferredStyle: .alert)
+        let alert = UIAlertController(title: nil, message: NSLocalizedString("cameraAuthrorisation", comment: ""), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("settings", comment: ""), style: .default, handler: { _ in
             guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
             UIApplication.shared.open(url, options: [:], completionHandler: nil)

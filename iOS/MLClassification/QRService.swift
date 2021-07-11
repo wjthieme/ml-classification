@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-class MetaService: NSObject, AVCaptureMetadataOutputObjectsDelegate {
+class QRService: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     
     static let updatedModelNotification = Notification.Name("updatedModelNotification")
     
@@ -36,7 +36,7 @@ class MetaService: NSObject, AVCaptureMetadataOutputObjectsDelegate {
             isPaused = true
             readData = [:]
             DispatchQueue.main.async { [self] in
-                loader = Loader(title: "Scanning", cancelAction: { [weak self] _ in self?.loader = nil })
+                loader = Loader(title: NSLocalizedString("scanning", comment: ""), cancelAction: { [weak self] _ in self?.loader = nil })
                 loader?.present(on: controller, completion: { [weak self] in self?.isPaused = false })
             }
         }
@@ -51,8 +51,8 @@ class MetaService: NSObject, AVCaptureMetadataOutputObjectsDelegate {
             isPaused = true
             let base64 = readData.sorted(by: { $0.key < $1.key}).map({ $0.value }).joined()
             let data = Data(base64Encoded: base64)
-            try? data?.write(to: Constants.modelUrl)
-            NotificationCenter.default.post(name: MetaService.updatedModelNotification, object: nil)
+            try? data?.write(to: Delegate.modelUrl)
+            NotificationCenter.default.post(name: QRService.updatedModelNotification, object: nil)
             DispatchQueue.main.async { [self] in
                 loader?.dismiss { [weak self] in self?.loader = nil }
             }

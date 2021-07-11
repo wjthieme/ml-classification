@@ -14,7 +14,8 @@ class Loader {
     
     init(title: String, cancelAction: ((UIAlertAction) -> Void)? = nil) {
         alertController = UIAlertController(title: title, message: "0%", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: cancelAction))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: cancelAction))
+        progressIndicator.tintColor = UIColor(named: "Tint")
     }
     
     func present(on controller: UIViewController, completion: (() -> Void)? = nil) {

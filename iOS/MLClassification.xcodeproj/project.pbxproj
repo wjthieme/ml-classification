@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,10 +13,11 @@
 		ED6676122694E64C00CBAB9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED6676112694E64C00CBAB9B /* Assets.xcassets */; };
 		ED6676152694E64C00CBAB9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED6676132694E64C00CBAB9B /* LaunchScreen.storyboard */; };
 		ED66761D2694EF6000CBAB9B /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED66761C2694EF6000CBAB9B /* Loader.swift */; };
-		ED66761F2695F92E00CBAB9B /* MetaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED66761E2695F92E00CBAB9B /* MetaService.swift */; };
-		ED6676212695FA0B00CBAB9B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6676202695FA0B00CBAB9B /* Constants.swift */; };
-		ED6676232695FB8C00CBAB9B /* BufferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6676222695FB8C00CBAB9B /* BufferService.swift */; };
+		ED66761F2695F92E00CBAB9B /* QRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED66761E2695F92E00CBAB9B /* QRService.swift */; };
+		ED6676232695FB8C00CBAB9B /* MLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6676222695FB8C00CBAB9B /* MLService.swift */; };
 		ED6676252696202900CBAB9B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6676242696202900CBAB9B /* Extensions.swift */; };
+		ED667628269ADEE200CBAB9B /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED667627269ADEE200CBAB9B /* Settings.bundle */; };
+		ED66762A269AF36F00CBAB9B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED667629269AF36F00CBAB9B /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,10 +31,11 @@
 		ED6676142694E64C00CBAB9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED6676162694E64C00CBAB9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED66761C2694EF6000CBAB9B /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
-		ED66761E2695F92E00CBAB9B /* MetaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaService.swift; sourceTree = "<group>"; };
-		ED6676202695FA0B00CBAB9B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		ED6676222695FB8C00CBAB9B /* BufferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BufferService.swift; sourceTree = "<group>"; };
+		ED66761E2695F92E00CBAB9B /* QRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRService.swift; sourceTree = "<group>"; };
+		ED6676222695FB8C00CBAB9B /* MLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLService.swift; sourceTree = "<group>"; };
 		ED6676242696202900CBAB9B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		ED667627269ADEE200CBAB9B /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		ED667629269AF36F00CBAB9B /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,15 +88,16 @@
 		ED6676072694E64800CBAB9B /* MLClassification */ = {
 			isa = PBXGroup;
 			children = (
-				ED66761C2694EF6000CBAB9B /* Loader.swift */,
 				ED6676082694E64800CBAB9B /* Delegate.swift */,
 				ED66760C2694E64800CBAB9B /* Controller.swift */,
-				ED6676202695FA0B00CBAB9B /* Constants.swift */,
-				ED66761E2695F92E00CBAB9B /* MetaService.swift */,
-				ED6676222695FB8C00CBAB9B /* BufferService.swift */,
+				ED66761C2694EF6000CBAB9B /* Loader.swift */,
+				ED66761E2695F92E00CBAB9B /* QRService.swift */,
+				ED6676222695FB8C00CBAB9B /* MLService.swift */,
 				ED6676242696202900CBAB9B /* Extensions.swift */,
 				ED6676112694E64C00CBAB9B /* Assets.xcassets */,
 				ED6676132694E64C00CBAB9B /* LaunchScreen.storyboard */,
+				ED667629269AF36F00CBAB9B /* Localizable.strings */,
+				ED667627269ADEE200CBAB9B /* Settings.bundle */,
 				ED6676162694E64C00CBAB9B /* Info.plist */,
 			);
 			path = MLClassification;
@@ -111,6 +114,7 @@
 				ED6676012694E64800CBAB9B /* Sources */,
 				ED6676022694E64800CBAB9B /* Frameworks */,
 				ED6676032694E64800CBAB9B /* Resources */,
+				D67B133855879584786999BF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -159,6 +163,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED6676152694E64C00CBAB9B /* LaunchScreen.storyboard in Resources */,
+				ED66762A269AF36F00CBAB9B /* Localizable.strings in Resources */,
+				ED667628269ADEE200CBAB9B /* Settings.bundle in Resources */,
 				ED6676122694E64C00CBAB9B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,6 +194,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D67B133855879584786999BF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MLClassification/Pods-MLClassification-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MLClassification/Pods-MLClassification-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MLClassification/Pods-MLClassification-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -195,12 +218,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED6676212695FA0B00CBAB9B /* Constants.swift in Sources */,
-				ED66761F2695F92E00CBAB9B /* MetaService.swift in Sources */,
+				ED66761F2695F92E00CBAB9B /* QRService.swift in Sources */,
 				ED66760D2694E64800CBAB9B /* Controller.swift in Sources */,
 				ED6676092694E64800CBAB9B /* Delegate.swift in Sources */,
 				ED66761D2694EF6000CBAB9B /* Loader.swift in Sources */,
-				ED6676232695FB8C00CBAB9B /* BufferService.swift in Sources */,
+				ED6676232695FB8C00CBAB9B /* MLService.swift in Sources */,
 				ED6676252696202900CBAB9B /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,8 +362,9 @@
 			baseConfigurationReference = ECF7BBB65DF33355EA8569AF /* Pods-MLClassification.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9ELM74XG98;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 6U44438UM8;
 				INFOPLIST_FILE = MLClassification/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -350,6 +373,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sogeti.MLClassification;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Development";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
@@ -362,8 +386,9 @@
 			baseConfigurationReference = 6F096E7D293D192DE313A8A1 /* Pods-MLClassification.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9ELM74XG98;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 6U44438UM8;
 				INFOPLIST_FILE = MLClassification/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -372,6 +397,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sogeti.MLClassification;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Distribution";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
