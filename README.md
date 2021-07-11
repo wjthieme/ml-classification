@@ -7,7 +7,7 @@
 # Notebook
 
 # iOS
-[![Build status](https://build.appcenter.ms/v0.1/apps/0637c714-cec7-48bb-8478-95b17cd97aa3/branches/main/badge)](https://appcenter.ms/users/will.thieme/apps/mlclassification-ios)
+[![Build status](https://build.appcenter.ms/v0.1/apps/0637c714-cec7-48bb-8478-95b17cd97aa3/branches/main/badge)](https://appcenter.ms/users/will.thieme/apps/mlclassification-ios/build/branches)
 
 # Android
-[![Build status](https://build.appcenter.ms/v0.1/apps/5d1f7553-d974-429c-afc3-68c1b352e4c4/branches/main/badge)](https://appcenter.ms/users/will.thieme/apps/mlclassification-android)
+[![Build status](https://build.appcenter.ms/v0.1/apps/5d1f7553-d974-429c-afc3-68c1b352e4c4/branches/main/badge)](https://appcenter.ms/users/will.thieme/apps/mlclassification-android/build/branches)
