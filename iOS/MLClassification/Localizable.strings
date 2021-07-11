@@ -9,3 +9,5 @@
 "cameraAuthrorisation" = "Please give permission for the camera to use the app.";
 "scanning" = "Scanning";
 "cancel" = "Cancel";
+"yes" = "Yes";
+"no" = "No";

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="?android:colorBackground">
+
+    <TextView
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/title_label"
+        tools:text="Scanning"
+        android:gravity="center"
+        style="@android:style/Widget.Holo.EditText"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/message_label"
+        tools:text="0%"
+        style="@android:style/Widget.Holo.DropDownItem"/>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.Holo.ProgressBar.Horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp" />
+
+    <Button
+        android:id="@+id/cancel_button"
+        style="@android:style/Widget.Holo.Button.Borderless"
+        android:textColor="@color/primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:text="@string/cancel"/>
+
+</LinearLayout>

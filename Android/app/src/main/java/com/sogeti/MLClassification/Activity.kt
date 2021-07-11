@@ -9,6 +9,8 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.Size
 import android.view.WindowManager
+import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -16,7 +18,6 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
-import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class Activity: AppCompatActivity() {
@@ -25,7 +26,8 @@ class Activity: AppCompatActivity() {
     private val permissionsRequestCode = 12741
 
     private lateinit var cameraView: PreviewView
-    private val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+    private lateinit var switchButton: ImageButton
+    private var cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,11 +39,25 @@ class Activity: AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         cameraView = findViewById(R.id.camera_view)
+        switchButton = findViewById(R.id.switch_button)
+        switchButton.setOnClickListener {
+            if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) {
+                cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
+                switchButton.setImageResource(R.drawable.ic_camera_rear)
+            } else {
+                cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+                switchButton.setImageResource(R.drawable.ic_camera_front)
+            }
+            shouldStartCamera()
+        }
     }
 
     override fun onStart() {
         super.onStart()
+        shouldStartCamera()
+    }
 
+    private fun shouldStartCamera() {
         when (allPermissionsGranted()) {
             true -> startCamera()
             false -> requestPermissions(permissions, permissionsRequestCode)
@@ -54,13 +70,13 @@ class Activity: AppCompatActivity() {
         cameraProviderFuture.addListener(Runnable {
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
-            val qrService = ImageAnalysis.Builder()
-                .setTargetResolution(Size(cameraView.width, cameraView.height))
-                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-                .build()
-                .apply {
-                    setAnalyzer(Executors.newSingleThreadExecutor(), QRService(this@Activity))
-                }
+            val analysis = MultiAnalysis().also {
+                it.addAnalyzer(QRService(this@Activity))
+                it.addAnalyzer(MLService(this@Activity))
+            }.build {
+                it.setTargetResolution(Size(cameraView.width, cameraView.height))
+                it.setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+            }
 
             val preview = Preview.Builder()
                 .build()
@@ -70,9 +86,9 @@ class Activity: AppCompatActivity() {
 
             try {
                 cameraProvider.unbindAll()
-                cameraProvider.bindToLifecycle(this, cameraSelector, preview, qrService)
+                cameraProvider.bindToLifecycle(this, cameraSelector, preview, analysis)
 
-            } catch(exc: Exception) {
+            } catch(e: Exception) {
                 return@Runnable
             }
 

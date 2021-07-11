@@ -14,12 +14,19 @@ class Controller: UIViewController {
     
     private var captureSession: AVCaptureSession?
     private var previewLayer: AVCaptureVideoPreviewLayer?
-    private let switchButton = UIButton()
-    private let predictionLabel = UIButton()
+    @IBOutlet private weak var predictionLabel: UILabel!
     private var isCapturesSessionBuilt = false
     private var qrService: QRService?
     private var mlService: MLService?
     private var cameraPosition = AVCaptureDevice.Position.back
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: "Layout", bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,29 +35,6 @@ class Controller: UIViewController {
         qrService = QRService(self)
         mlService = MLService(predictionLabel)
         
-        let switchConfig = UIImage.SymbolConfiguration(pointSize: 26)
-        let switchIcon = UIImage(systemName: "arrow.triangle.2.circlepath.camera.fill", withConfiguration: switchConfig)
-        switchButton.setImage(switchIcon, for: .normal)
-        switchButton.tintColor = .white
-        switchButton.translatesAutoresizingMaskIntoConstraints = false
-        switchButton.addTarget(self, action: #selector(didPressSwitchButton), for: .touchUpInside)
-        view.addSubview(switchButton)
-        switchButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -52).isActive = true
-        switchButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12).isActive = true
-        switchButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
-        switchButton.widthAnchor.constraint(equalToConstant: 48).isActive = true
-        
-        predictionLabel.translatesAutoresizingMaskIntoConstraints = false
-        predictionLabel.backgroundColor = .white
-        predictionLabel.layer.cornerCurve = .continuous
-        predictionLabel.layer.cornerRadius = 24
-        predictionLabel.isHidden = true
-        predictionLabel.setTitleColor(.black, for: .normal)
-        view.addSubview(predictionLabel)
-        predictionLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        predictionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 52).isActive = true
-        predictionLabel.heightAnchor.constraint(equalToConstant: 48).isActive = true
-        predictionLabel.widthAnchor.constraint(equalToConstant: 256).isActive = true
     }
     
     private func buildCaptureSession() {
@@ -102,7 +86,7 @@ class Controller: UIViewController {
         }
     }
     
-    @objc private func didPressSwitchButton() {
+    @IBAction private func didPressSwitchButton() {
         cameraPosition = cameraPosition == .back ? .front : .back
         captureSession?.stopRunning()
         isCapturesSessionBuilt = false
