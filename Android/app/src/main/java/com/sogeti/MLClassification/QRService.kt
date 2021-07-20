@@ -1,22 +1,21 @@
 package com.sogeti.MLClassification
 
+import android.R.attr.bitmap
 import android.app.Activity
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Bitmap
 import android.graphics.ImageFormat.*
-import android.media.Image
 import android.os.Handler
 import android.os.Looper
 import android.util.Base64
-import androidx.camera.core.ImageAnalysis
-import androidx.camera.core.ImageProxy
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.zxing.*
 import com.google.zxing.common.HybridBinarizer
 import java.nio.ByteBuffer
 
 
-class QRService(private val context: Activity): ImageAnalysis.Analyzer {
+class QRService(private val context: Activity): MultiAnalysis.Analyzer {
 
     private var loader: Loader? = null
     private var isPaused = false
@@ -31,11 +30,12 @@ class QRService(private val context: Activity): ImageAnalysis.Analyzer {
         val updatedModelBroadcastFilter = IntentFilter(updatedModelBroadcast)
     }
 
-    override fun analyze(proxy: ImageProxy) {
+    override fun analyze(image: Bitmap) {
         if (isPaused) { return }
         try {
-            val data = proxy.planes[0].buffer.toByteArray()
-            val source = PlanarYUVLuminanceSource(data, proxy.width, proxy.height, 0, 0, proxy.width, proxy.height, false)
+            val pixels = IntArray(image.width * image.height)
+            image.getPixels(pixels, 0, image.width, 0, 0, image.width, image.height)
+            val source = RGBLuminanceSource(image.width, image.height, pixels)
             val binaryBitmap = BinaryBitmap(HybridBinarizer(source))
             val result = scanner.decode(binaryBitmap)
             val parts = result.text.split(",")
