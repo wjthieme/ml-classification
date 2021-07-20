@@ -50,23 +50,25 @@ class QRService(private val context: Activity): MultiAnalysis.Analyzer {
         isPaused = true
         startLoading()
 
-        try {
-            val connection = downloadUrl.openConnection()
-            val inStream = InputStreamReader(connection.getInputStream())
-            val reader = BufferedReader(inStream)
-            val targetFile = Application.modelUrl(context)
-            val writer = FileWriter(targetFile)
-            reader.copyTo(writer)
-            LocalBroadcastManager.getInstance(context).sendBroadcast(updatedModelBroadcastIntent)
-        } catch (e: Exception) {
-            didError(e)
-        }
+        Thread {
+            try {
+                val connection = downloadUrl.openConnection()
+                val inStream = InputStreamReader(connection.getInputStream())
+                val reader = BufferedReader(inStream)
+                val targetFile = Application.modelUrl(context)
+                val writer = FileWriter(targetFile)
+                reader.copyTo(writer)
+                LocalBroadcastManager.getInstance(context).sendBroadcast(updatedModelBroadcastIntent)
+            } catch (e: Exception) {
+                didError(e)
+            }
 
-        stopLoading()
+            stopLoading()
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            isPaused = false
-        }, 5000)
+            Handler(Looper.getMainLooper()).postDelayed({
+                isPaused = false
+            }, 5000)
+        }.start()
 
     }
 
