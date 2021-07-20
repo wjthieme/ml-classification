@@ -1,18 +1,12 @@
 package com.sogeti.MLClassification
 
-import android.annotation.SuppressLint
 import android.graphics.*
-import android.media.Image
-import android.os.SystemClock
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
-import com.google.android.gms.tasks.Task
 import java.io.ByteArrayOutputStream
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
-import kotlin.math.min
 
 class MultiAnalysis: ImageAnalysis.Analyzer {
 

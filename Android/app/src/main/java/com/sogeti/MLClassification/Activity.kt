@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.Size
 import android.view.WindowManager
-import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
@@ -18,8 +17,6 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
-import java.util.concurrent.Executor
-import java.util.concurrent.Executors
 
 class Activity: AppCompatActivity() {
 

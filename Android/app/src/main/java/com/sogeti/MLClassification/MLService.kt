@@ -6,17 +6,13 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.graphics.*
-import android.media.Image
 import android.util.Size
 import android.view.View
 import android.widget.TextView
-import androidx.camera.core.ImageAnalysis
-import androidx.camera.core.ImageProxy
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.Interpreter
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
-import java.io.ByteArrayOutputStream
 import java.lang.Exception
 import java.lang.Float.min
 
@@ -66,7 +62,7 @@ class MLService(private val context: Activity): MultiAnalysis.Analyzer, Broadcas
     }
 
 
-    fun tryLoadModel() {
+    private fun tryLoadModel() {
         try {
             model?.close()
             model = Interpreter(Application.modelUrl(context))

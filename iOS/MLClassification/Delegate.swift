@@ -14,7 +14,7 @@ import AppCenterDistribute
 @main
 class Delegate: UIResponder, UIApplicationDelegate {
     
-    static let homeDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    private static let homeDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     static let modelUrl = homeDir.appendingPathComponent("model.tflite")
 
     internal var window: UIWindow?

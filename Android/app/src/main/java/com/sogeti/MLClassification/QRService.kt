@@ -1,18 +1,15 @@
 package com.sogeti.MLClassification
 
-import android.R.attr.bitmap
 import android.app.Activity
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Bitmap
-import android.graphics.ImageFormat.*
 import android.os.Handler
 import android.os.Looper
 import android.util.Base64
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.zxing.*
 import com.google.zxing.common.HybridBinarizer
-import java.nio.ByteBuffer
 
 
 class QRService(private val context: Activity): MultiAnalysis.Analyzer {
@@ -25,7 +22,7 @@ class QRService(private val context: Activity): MultiAnalysis.Analyzer {
     private var readData: MutableMap<Int, String> = mutableMapOf()
 
     companion object {
-        val updatedModelBroadcast = "updatedModelBroadcast"
+        private const val updatedModelBroadcast = "updatedModelBroadcast"
         val updatedModelBroadcastIntent = Intent(updatedModelBroadcast)
         val updatedModelBroadcastFilter = IntentFilter(updatedModelBroadcast)
     }
@@ -82,14 +79,6 @@ class QRService(private val context: Activity): MultiAnalysis.Analyzer {
             return
         }
     }
-
-    private fun ByteBuffer.toByteArray(): ByteArray {
-        rewind()
-        val data = ByteArray(remaining())
-        get(data)
-        return data
-    }
-
 }
 
 
