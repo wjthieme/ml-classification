@@ -34,7 +34,14 @@ class Delegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-
+    
+    
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:] ) -> Bool {
+        guard let controller = window?.rootViewController as? Controller else { return false }
+        guard let service = controller.qrService else { return false }
+        service.didFind(url: url)
+        return true
+    }
 
 }
 

@@ -27,13 +27,16 @@ class Activity: AppCompatActivity() {
     private lateinit var switchButton: ImageButton
     private var cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
+    private lateinit var qrService: QRService
+    private lateinit var mlService: MLService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setBackgroundDrawable(null)
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-        );
+        )
         setContentView(R.layout.activity_main)
 
         cameraView = findViewById(R.id.camera_view)
@@ -47,6 +50,13 @@ class Activity: AppCompatActivity() {
                 switchButton.setImageResource(R.drawable.ic_camera_front)
             }
             shouldStartCamera()
+        }
+
+        qrService = QRService(this)
+        mlService = MLService(this)
+
+        if (intent.action == Intent.ACTION_VIEW) {
+            intent.data?.let { qrService.didFind(it) }
         }
     }
 
@@ -69,8 +79,8 @@ class Activity: AppCompatActivity() {
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
             val analysis = MultiAnalysis().also {
-                it.addAnalyzer(QRService(this@Activity))
-                it.addAnalyzer(MLService(this@Activity))
+                it.addAnalyzer(qrService)
+                it.addAnalyzer(mlService)
             }.build {
                 it.setTargetResolution(Size(cameraView.width, cameraView.height))
                 it.setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)

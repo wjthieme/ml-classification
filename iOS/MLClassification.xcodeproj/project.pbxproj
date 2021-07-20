@@ -12,7 +12,6 @@
 		ED66760D2694E64800CBAB9B /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED66760C2694E64800CBAB9B /* Controller.swift */; };
 		ED6676122694E64C00CBAB9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED6676112694E64C00CBAB9B /* Assets.xcassets */; };
 		ED6676152694E64C00CBAB9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED6676132694E64C00CBAB9B /* LaunchScreen.storyboard */; };
-		ED66761D2694EF6000CBAB9B /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED66761C2694EF6000CBAB9B /* Loader.swift */; };
 		ED66761F2695F92E00CBAB9B /* QRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED66761E2695F92E00CBAB9B /* QRService.swift */; };
 		ED6676232695FB8C00CBAB9B /* MLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6676222695FB8C00CBAB9B /* MLService.swift */; };
 		ED667628269ADEE200CBAB9B /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED667627269ADEE200CBAB9B /* Settings.bundle */; };
@@ -30,7 +29,6 @@
 		ED6676112694E64C00CBAB9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED6676142694E64C00CBAB9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED6676162694E64C00CBAB9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ED66761C2694EF6000CBAB9B /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		ED66761E2695F92E00CBAB9B /* QRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRService.swift; sourceTree = "<group>"; };
 		ED6676222695FB8C00CBAB9B /* MLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLService.swift; sourceTree = "<group>"; };
 		ED667627269ADEE200CBAB9B /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 			children = (
 				ED6676082694E64800CBAB9B /* Delegate.swift */,
 				ED66760C2694E64800CBAB9B /* Controller.swift */,
-				ED66761C2694EF6000CBAB9B /* Loader.swift */,
 				ED66761E2695F92E00CBAB9B /* QRService.swift */,
 				ED6676222695FB8C00CBAB9B /* MLService.swift */,
 				ED6676112694E64C00CBAB9B /* Assets.xcassets */,
@@ -222,7 +219,6 @@
 				ED66761F2695F92E00CBAB9B /* QRService.swift in Sources */,
 				ED66760D2694E64800CBAB9B /* Controller.swift in Sources */,
 				ED6676092694E64800CBAB9B /* Delegate.swift in Sources */,
-				ED66761D2694EF6000CBAB9B /* Loader.swift in Sources */,
 				ED6676232695FB8C00CBAB9B /* MLService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

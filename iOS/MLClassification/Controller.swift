@@ -12,16 +12,22 @@ class Controller: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
+    @IBOutlet weak var predictionLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     private var captureSession: AVCaptureSession?
     private var previewLayer: AVCaptureVideoPreviewLayer?
-    @IBOutlet private weak var predictionLabel: UILabel!
     private var isCapturesSessionBuilt = false
-    private var qrService: QRService?
-    private var mlService: MLService?
+    
+    var qrService: QRService?
+    var mlService: MLService?
+    
     private var cameraPosition = AVCaptureDevice.Position.back
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: "Layout", bundle: nil)
+        qrService = QRService(self)
+        mlService = MLService(self)
     }
     
     required init?(coder: NSCoder) {
@@ -31,10 +37,6 @@ class Controller: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(shouldBuildCaptureSession), name: UIApplication.willEnterForegroundNotification, object: nil)
-        
-        qrService = QRService(self)
-        mlService = MLService(predictionLabel)
-        
     }
     
     private func buildCaptureSession() {

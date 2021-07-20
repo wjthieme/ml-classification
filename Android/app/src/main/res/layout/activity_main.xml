@@ -26,6 +26,17 @@
         style="@android:style/Widget.Holo.DropDownItem"
         />
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.Holo.ProgressBar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="75dp"
+        android:visibility="gone"/>
+
     <ImageButton
         android:layout_width="48dp"
         android:layout_height="48dp"
