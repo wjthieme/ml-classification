@@ -28,24 +28,25 @@ class QRService: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func didFind(url: URL) {
-        let downloadPath = url.absoluteString.replacingOccurrences(of: "ml-classification://", with: "")
         if isPaused { return }
-        guard let downloadUrl = URL(string: downloadPath) else { return }
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return }
+        guard let queryItems = components.queryItems else { return }
+        guard let id = queryItems.first(where: { $0.name == "id" })?.value else { return }
+        guard let hash = queryItems.first(where: { $0.name == "hash" })?.value else { return }
+        
         isPaused = true
         startLoading()
-        URLSession.shared.dataTask(with: downloadUrl) { [self] data, response, error in
-            do {
-                guard let data = data else { throw CocoaError.init(.fileWriteUnknown) }
-                try data.write(to: Delegate.modelUrl)
-                NotificationCenter.default.post(name: QRService.updatedModelNotification, object: nil)
-            } catch {
+        Downloader.download(id: id, hash: hash) { [self] error in
+            if let error = error {
                 didError(error)
+            } else {
+                NotificationCenter.default.post(name: QRService.updatedModelNotification, object: nil)
             }
             stopLoading()
             DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [self] in
                 isPaused = false
             }
-        }.resume()
+        }
     }
     
     

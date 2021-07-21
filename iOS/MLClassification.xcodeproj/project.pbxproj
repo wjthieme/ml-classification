@@ -17,6 +17,7 @@
 		ED667628269ADEE200CBAB9B /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED667627269ADEE200CBAB9B /* Settings.bundle */; };
 		ED66762A269AF36F00CBAB9B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED667629269AF36F00CBAB9B /* Localizable.strings */; };
 		ED66762C269B457400CBAB9B /* Layout.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED66762B269B457400CBAB9B /* Layout.xib */; };
+		ED66763026A7FB3A00CBAB9B /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED66762F26A7FB3A00CBAB9B /* Downloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		ED667627269ADEE200CBAB9B /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		ED667629269AF36F00CBAB9B /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		ED66762B269B457400CBAB9B /* Layout.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Layout.xib; sourceTree = "<group>"; };
+		ED66762F26A7FB3A00CBAB9B /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				ED66760C2694E64800CBAB9B /* Controller.swift */,
 				ED66761E2695F92E00CBAB9B /* QRService.swift */,
 				ED6676222695FB8C00CBAB9B /* MLService.swift */,
+				ED66762F26A7FB3A00CBAB9B /* Downloader.swift */,
 				ED6676112694E64C00CBAB9B /* Assets.xcassets */,
 				ED6676132694E64C00CBAB9B /* LaunchScreen.storyboard */,
 				ED66762B269B457400CBAB9B /* Layout.xib */,
@@ -216,6 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED66763026A7FB3A00CBAB9B /* Downloader.swift in Sources */,
 				ED66761F2695F92E00CBAB9B /* QRService.swift in Sources */,
 				ED66760D2694E64800CBAB9B /* Controller.swift in Sources */,
 				ED6676092694E64800CBAB9B /* Delegate.swift in Sources */,

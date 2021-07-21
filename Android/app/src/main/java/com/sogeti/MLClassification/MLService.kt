@@ -10,6 +10,7 @@ import android.util.Size
 import android.view.View
 import android.widget.TextView
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.sogeti.MLClassification.Application.Companion.modelUrl
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.Interpreter
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
@@ -31,7 +32,7 @@ class MLService(private val context: Activity): MultiAnalysis.Analyzer, Broadcas
     @SuppressLint("SetTextI18n")
     override fun analyze(image: Bitmap) {
         try {
-            val model = model ?: throw NoSuchFileException(Application.modelUrl(context))
+            val model = model ?: throw NoSuchFileException(context.modelUrl())
             val inputTemplate = model.getInputTensor(0)
             val outputTemplate = model.getOutputTensor(0)
 
@@ -65,7 +66,7 @@ class MLService(private val context: Activity): MultiAnalysis.Analyzer, Broadcas
     private fun tryLoadModel() {
         try {
             model?.close()
-            model = Interpreter(Application.modelUrl(context))
+            model = Interpreter(context.modelUrl())
         } catch (e: Exception) {
             return
         }

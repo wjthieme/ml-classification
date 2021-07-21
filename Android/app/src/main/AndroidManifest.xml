@@ -31,7 +31,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="ml-classification"
-                    android:host="https" />
+                    android:host="model" />
             </intent-filter>
         </activity>
     </application>
