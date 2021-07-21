@@ -82,7 +82,7 @@ class Activity: AppCompatActivity() {
                 it.addAnalyzer(qrService)
                 it.addAnalyzer(mlService)
             }.build {
-                it.setTargetResolution(Size(cameraView.width, cameraView.height))
+                it.setTargetResolution(Size(640, 360))
                 it.setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
             }
 

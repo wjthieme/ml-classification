@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.*
 import android.util.Size
 import android.view.View
@@ -16,21 +17,25 @@ import org.tensorflow.lite.Interpreter
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.lang.Exception
 import java.lang.Float.min
+import java.util.concurrent.atomic.AtomicBoolean
 
 class MLService(private val context: Activity): MultiAnalysis.Analyzer, BroadcastReceiver() {
 
     private var model: Interpreter? = null
     private val predictionView: TextView
+    private val isPaused = AtomicBoolean(false)
 
     init {
-        LocalBroadcastManager.getInstance(context).registerReceiver(this, QRService.updatedModelBroadcastFilter)
+        LocalBroadcastManager.getInstance(context).registerReceiver(this, IntentFilter(QRService.startUpdatingModelBroadcast))
+        LocalBroadcastManager.getInstance(context).registerReceiver(this, IntentFilter(QRService.endUpdatingModelBroadcast))
         predictionView = context.findViewById(R.id.prediction_view)
         tryLoadModel()
     }
 
-
     @SuppressLint("SetTextI18n")
     override fun analyze(image: Bitmap) {
+        if (isPaused.get())
+            return
         try {
             val model = model ?: throw NoSuchFileException(context.modelUrl())
             val inputTemplate = model.getInputTensor(0)
@@ -48,7 +53,12 @@ class MLService(private val context: Activity): MultiAnalysis.Analyzer, Broadcas
             val max = output.floatArray.withIndex().maxByOrNull { it.value }!!
 
             context.runOnUiThread {
-                val pred = context.getText(if (max.index == 0) R.string.yes else R.string.no)
+                val pred = context.getText(when (max.index) {
+                    0 -> R.string.match
+                    1 -> R.string.no_face
+                    2 -> R.string.no_match
+                    else -> R.string.prediction_error
+                })
                 val prob = (max.value * 100).toInt()
                 predictionView.visibility = View.VISIBLE
                 predictionView.text = "$pred ($prob%)"
@@ -67,13 +77,20 @@ class MLService(private val context: Activity): MultiAnalysis.Analyzer, Broadcas
         try {
             model?.close()
             model = Interpreter(context.modelUrl())
+            model?.allocateTensors()
         } catch (e: Exception) {
             return
+        } finally {
+            isPaused.set(false)
         }
     }
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        tryLoadModel()
+        when(intent?.action) {
+            QRService.startUpdatingModelBroadcast -> isPaused.set(true)
+            QRService.endUpdatingModelBroadcast -> tryLoadModel()
+            else -> return
+        }
     }
 
     private fun Bitmap.rotate(degrees: Float): Bitmap {

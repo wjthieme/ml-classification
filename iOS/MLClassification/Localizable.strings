@@ -8,7 +8,9 @@
 "settings" = "Settings";
 "cameraAuthrorisation" = "Please give permission for the camera to use the app.";
 "downloadError" = "Error downloading";
-"yes" = "Yes";
-"no" = "No";
+"match" = "Matching face detected";
+"noMatch" = "Non-matching face detected";
+"noFace" = "No face detected";
+"predictionError" = "Prediction error";
 "ok" = "Ok";
 

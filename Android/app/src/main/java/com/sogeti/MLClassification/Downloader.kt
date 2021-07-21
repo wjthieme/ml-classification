@@ -15,9 +15,9 @@ object Downloader {
                 val connection = url.openConnection()
                 val inputStream = connection.getInputStream()
                 val data = inputStream.readBytes()
-                if (sha1(data) == hash) throw SecurityException()
-                val outputStream = FileOutputStream(modelUrl())
-                outputStream.write(data)
+                if (sha1(data) != hash) throw SecurityException()
+                modelUrl().writeBytes(data)
+                inputStream.close()
                 completion(null)
             } catch (e: Exception) {
                 completion(e)

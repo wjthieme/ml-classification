@@ -25,9 +25,8 @@ class QRService(private val context: Activity): MultiAnalysis.Analyzer {
     }
 
     companion object {
-        private const val updatedModelBroadcast = "updatedModelBroadcast"
-        val updatedModelBroadcastIntent = Intent(updatedModelBroadcast)
-        val updatedModelBroadcastFilter = IntentFilter(updatedModelBroadcast)
+        const val endUpdatingModelBroadcast = "endUpdatingModelBroadcast"
+        const val startUpdatingModelBroadcast = "startUpdatingModelBroadcast"
     }
 
     override fun analyze(image: Bitmap) {
@@ -51,13 +50,15 @@ class QRService(private val context: Activity): MultiAnalysis.Analyzer {
 
         isPaused = true
         startLoading()
+        LocalBroadcastManager.getInstance(context).sendBroadcast(Intent(
+            startUpdatingModelBroadcast))
 
         context.download(id, hash) { error ->
             if (error != null) {
                 didError(error)
-            } else {
-                LocalBroadcastManager.getInstance(context).sendBroadcast(updatedModelBroadcastIntent)
             }
+            LocalBroadcastManager.getInstance(context).sendBroadcast(Intent(
+                    endUpdatingModelBroadcast))
 
             stopLoading()
             Handler(Looper.getMainLooper()).postDelayed({
