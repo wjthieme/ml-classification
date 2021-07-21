@@ -49,8 +49,8 @@ class MLService: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
                 var pred: String
                 switch max.offset {
                 case 0: pred = NSLocalizedString("match", comment: "")
-                case 0: pred = NSLocalizedString("noFace", comment: "")
-                case 0: pred = NSLocalizedString("noMatch", comment: "")
+                case 1: pred = NSLocalizedString("noFace", comment: "")
+                case 2: pred = NSLocalizedString("noMatch", comment: "")
                 default: pred = NSLocalizedString("predictionError", comment: "")
                 }
                 let prob = Int(max.element * 100)
