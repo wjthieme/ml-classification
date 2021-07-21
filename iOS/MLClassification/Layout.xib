@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Controller" customModule="MLClassification" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="q4Z-Pp-HWA" id="2TU-MT-pXI"/>
                 <outlet property="predictionLabel" destination="Rnu-Tj-VtD" id="bRc-8x-DhK"/>
                 <outlet property="view" destination="iN0-l3-epB" id="BC2-k3-Rbh"/>
             </connections>
@@ -46,18 +47,28 @@
                     </constraints>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal">
-                        <imageReference key="image" image="camera.rotate.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="image" image="arrow.triangle.2.circlepath.camera.fill" catalog="system" symbolScale="large"/>
                     </state>
                     <connections>
                         <action selector="didPressSwitchButton" destination="-1" eventType="touchUpInside" id="iet-pi-fPi"/>
                     </connections>
                 </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="q4Z-Pp-HWA">
+                    <rect key="frame" x="50" y="802" width="48" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="K3Z-gq-gJb"/>
+                        <constraint firstAttribute="width" constant="48" id="bLY-i1-CTx"/>
+                    </constraints>
+                    <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="Rnu-Tj-VtD" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="50" id="7Fy-zt-FVt"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rn5-H3-wdM" secondAttribute="trailing" constant="50" id="JA8-1t-VyJ"/>
+                <constraint firstItem="q4Z-Pp-HWA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="50" id="K3c-cR-rDs"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="q4Z-Pp-HWA" secondAttribute="bottom" constant="12" id="W4G-qM-qs2"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="rn5-H3-wdM" secondAttribute="bottom" constant="12" id="aD3-wg-MuB"/>
                 <constraint firstItem="Rnu-Tj-VtD" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="sl8-go-4Zw"/>
             </constraints>
@@ -65,7 +76,7 @@
         </view>
     </objects>
     <resources>
-        <image name="camera.rotate.fill" catalog="system" width="128" height="94"/>
+        <image name="arrow.triangle.2.circlepath.camera.fill" catalog="system" width="128" height="94"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

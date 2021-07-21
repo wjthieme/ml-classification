@@ -12,12 +12,12 @@
 		ED66760D2694E64800CBAB9B /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED66760C2694E64800CBAB9B /* Controller.swift */; };
 		ED6676122694E64C00CBAB9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED6676112694E64C00CBAB9B /* Assets.xcassets */; };
 		ED6676152694E64C00CBAB9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED6676132694E64C00CBAB9B /* LaunchScreen.storyboard */; };
-		ED66761D2694EF6000CBAB9B /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED66761C2694EF6000CBAB9B /* Loader.swift */; };
 		ED66761F2695F92E00CBAB9B /* QRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED66761E2695F92E00CBAB9B /* QRService.swift */; };
 		ED6676232695FB8C00CBAB9B /* MLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6676222695FB8C00CBAB9B /* MLService.swift */; };
 		ED667628269ADEE200CBAB9B /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED667627269ADEE200CBAB9B /* Settings.bundle */; };
 		ED66762A269AF36F00CBAB9B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED667629269AF36F00CBAB9B /* Localizable.strings */; };
 		ED66762C269B457400CBAB9B /* Layout.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED66762B269B457400CBAB9B /* Layout.xib */; };
+		ED66763026A7FB3A00CBAB9B /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED66762F26A7FB3A00CBAB9B /* Downloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,12 +30,12 @@
 		ED6676112694E64C00CBAB9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED6676142694E64C00CBAB9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED6676162694E64C00CBAB9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ED66761C2694EF6000CBAB9B /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		ED66761E2695F92E00CBAB9B /* QRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRService.swift; sourceTree = "<group>"; };
 		ED6676222695FB8C00CBAB9B /* MLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLService.swift; sourceTree = "<group>"; };
 		ED667627269ADEE200CBAB9B /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		ED667629269AF36F00CBAB9B /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		ED66762B269B457400CBAB9B /* Layout.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Layout.xib; sourceTree = "<group>"; };
+		ED66762F26A7FB3A00CBAB9B /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,9 +90,9 @@
 			children = (
 				ED6676082694E64800CBAB9B /* Delegate.swift */,
 				ED66760C2694E64800CBAB9B /* Controller.swift */,
-				ED66761C2694EF6000CBAB9B /* Loader.swift */,
 				ED66761E2695F92E00CBAB9B /* QRService.swift */,
 				ED6676222695FB8C00CBAB9B /* MLService.swift */,
+				ED66762F26A7FB3A00CBAB9B /* Downloader.swift */,
 				ED6676112694E64C00CBAB9B /* Assets.xcassets */,
 				ED6676132694E64C00CBAB9B /* LaunchScreen.storyboard */,
 				ED66762B269B457400CBAB9B /* Layout.xib */,
@@ -219,10 +219,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED66763026A7FB3A00CBAB9B /* Downloader.swift in Sources */,
 				ED66761F2695F92E00CBAB9B /* QRService.swift in Sources */,
 				ED66760D2694E64800CBAB9B /* Controller.swift in Sources */,
 				ED6676092694E64800CBAB9B /* Delegate.swift in Sources */,
-				ED66761D2694EF6000CBAB9B /* Loader.swift in Sources */,
 				ED6676232695FB8C00CBAB9B /* MLService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,6 +364,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6U44438UM8;
 				INFOPLIST_FILE = MLClassification/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -371,6 +372,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sogeti.MLClassification;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Development";
@@ -388,6 +390,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6U44438UM8;
 				INFOPLIST_FILE = MLClassification/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -395,6 +398,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sogeti.MLClassification;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Distribution";

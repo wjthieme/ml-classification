@@ -7,7 +7,8 @@
 */
 "settings" = "Settings";
 "cameraAuthrorisation" = "Please give permission for the camera to use the app.";
-"scanning" = "Scanning";
-"cancel" = "Cancel";
+"downloadError" = "Error downloading";
 "yes" = "Yes";
 "no" = "No";
+"ok" = "Ok";
+

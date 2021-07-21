@@ -11,10 +11,10 @@ import TensorFlowLite
 
 class MLService: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     private var model: Interpreter?
-    private weak var predictionLabel: UILabel?
+    private weak var controller: Controller?
     
-    init(_ label: UILabel) {
-        self.predictionLabel = label
+    init(_ controller: Controller) {
+        self.controller = controller
         super.init()
         NotificationCenter.default.addObserver(self, selector: #selector(tryLoadModel), name: QRService.updatedModelNotification, object: nil)
         tryLoadModel()
@@ -45,15 +45,15 @@ class MLService: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
             let max = floats.enumerated().max(by: { $0.element < $1.element })!
             
             DispatchQueue.main.async { [self] in
-                predictionLabel?.isHidden = false
+                controller?.predictionLabel?.isHidden = false
                 let pred = NSLocalizedString(max.offset == 0 ? "yes" : "no", comment: "")
                 let prob = Int(max.element * 100)
-                predictionLabel?.text = "\(pred) (\(prob)%)"
+                controller?.predictionLabel?.text = "\(pred) (\(prob)%)"
             }
             
         } catch {
             DispatchQueue.main.async { [self] in
-                predictionLabel?.isHidden = true
+                controller?.predictionLabel?.isHidden = true
             }
         }
         

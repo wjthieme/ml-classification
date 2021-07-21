@@ -13,49 +13,36 @@ class QRService: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     static let updatedModelNotification = Notification.Name("updatedModelNotification")
     
     private var isPaused = false
-    private weak var controller: UIViewController?
-    private var loader: Loader?
-    private var readData: [Int: String] = [:]
+    private weak var controller: Controller?
     
-    init(_ controller: UIViewController) {
+    init(_ controller: Controller) {
         self.controller = controller
         super.init()
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        if isPaused { return }
-        guard let controller = controller else { return }
         guard let metaObject = metadataObjects.first else { return }
         guard let readableObject = metaObject as? AVMetadataMachineReadableCodeObject else { return }
-        guard let parts = readableObject.stringValue?.split(separator: ",") else { return }
-        guard parts.count == 3 else { return }
-        guard let part = Int(parts[0]) else { return }
-        guard let total = Int(parts[1]) else { return }
+        guard let url = URL(string: readableObject.stringValue ?? "") else { return }
+        didFind(url: url)
+    }
+    
+    func didFind(url: URL) {
+        if isPaused { return }
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return }
+        guard let queryItems = components.queryItems else { return }
+        guard let id = queryItems.first(where: { $0.name == "id" })?.value else { return }
+        guard let hash = queryItems.first(where: { $0.name == "hash" })?.value else { return }
         
-        if loader == nil {
-            isPaused = true
-            readData = [:]
-            DispatchQueue.main.async { [self] in
-                loader = Loader(title: NSLocalizedString("scanning", comment: ""), cancelAction: { [weak self] _ in self?.loader = nil })
-                loader?.present(on: controller, completion: { [weak self] in self?.isPaused = false })
+        isPaused = true
+        startLoading()
+        Downloader.download(id: id, hash: hash) { [self] error in
+            if let error = error {
+                didError(error)
+            } else {
+                NotificationCenter.default.post(name: QRService.updatedModelNotification, object: nil)
             }
-        }
-        
-        readData[part] = String(parts[2])
-        DispatchQueue.main.async { [self] in
-            let progress = Float(readData.count) / Float(total)
-            loader?.update(progress)
-        }
-        
-        if readData.count == total {
-            isPaused = true
-            let base64 = readData.sorted(by: { $0.key < $1.key}).map({ $0.value }).joined()
-            let data = Data(base64Encoded: base64)
-            try? data?.write(to: Delegate.modelUrl)
-            NotificationCenter.default.post(name: QRService.updatedModelNotification, object: nil)
-            DispatchQueue.main.async { [self] in
-                loader?.dismiss { [weak self] in self?.loader = nil }
-            }
+            stopLoading()
             DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [self] in
                 isPaused = false
             }
@@ -63,4 +50,32 @@ class QRService: NSObject, AVCaptureMetadataOutputObjectsDelegate {
     }
     
     
+    private func startLoading() {
+        guard Thread.isMainThread else { DispatchQueue.main.async { self.startLoading() }; return }
+        guard let controller = controller else { return }
+        controller.activityIndicator.startAnimating()
+        controller.activityIndicator.alpha = 0
+        UIView.animate(withDuration: 0.3) {
+            controller.activityIndicator.alpha = 1
+        }
+    }
+    
+    private func stopLoading() {
+        guard Thread.isMainThread else { DispatchQueue.main.async { self.stopLoading() }; return }
+        guard let controller = controller else { return }
+        controller.activityIndicator.alpha = 1
+        UIView.animate(withDuration: 0.3, animations: {
+            controller.activityIndicator.alpha = 0
+        }) { _ in
+            controller.activityIndicator.stopAnimating()
+        }
+    }
+    
+    private func didError(_ error: Error) {
+        guard Thread.isMainThread else { DispatchQueue.main.async { self.didError(error) }; return }
+        guard let controller = controller else { return }
+        let alert = UIAlertController(title: NSLocalizedString("downloadError", comment: ""), message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .default, handler: nil))
+        controller.present(alert, animated: true, completion: nil)
+    }
 }
