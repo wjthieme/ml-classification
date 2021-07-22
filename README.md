@@ -23,3 +23,10 @@ The iOS application is created with Swift using Xcode. There are two ways to try
 
 The iOS application is created with Kotlin using Android Studio. There are two ways to try out the application. Download the prebuilt apk file to an Android device or build the app from source.
 
+## How to cite
+> Thieme, W.J., (2021) *MLClassification: iOS/Android Image Classification Tutorial* https://github.com/wjthieme/ml-classification
+
+## Licence
+
+[MIT](https://github.com/wjthieme/csna/blob/main/LICENSE)
+
