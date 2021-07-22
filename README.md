@@ -28,5 +28,5 @@ The iOS application is created with Kotlin using Android Studio. There are two w
 
 ## Licence
 
-[MIT](https://github.com/wjthieme/csna/blob/main/LICENSE)
+[MIT](https://github.com/wjthieme/ml-classification/blob/main/LICENSE)
 
