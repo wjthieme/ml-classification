@@ -8,8 +8,8 @@ MLClassification is a repository for training your first Deep Neural Network (DN
 
 ### TODO
 
-[ ] iOS Installable Build
-[ ] Remove adding own data
+- [ ] iOS Installable Build
+- [ ] Remove adding own data
 
 # Notebook
 [![Colab](https://img.shields.io/badge/release-colab-blue)](https://colab.research.google.com/github/wjthieme/ml-classification/blob/main/Notebook.ipynb)
