@@ -1,4 +1,4 @@
-package com.sogeti.MLClassification
+package com.wjthieme.MLClassification
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -11,7 +11,7 @@ import android.util.Size
 import android.view.View
 import android.widget.TextView
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.sogeti.MLClassification.Application.Companion.modelUrl
+import com.wjthieme.MLClassification.Application.Companion.modelUrl
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.Interpreter
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer

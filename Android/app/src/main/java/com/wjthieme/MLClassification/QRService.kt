@@ -1,9 +1,8 @@
-package com.sogeti.MLClassification
+package com.wjthieme.MLClassification
 
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
-import android.content.IntentFilter
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Handler
@@ -13,9 +12,7 @@ import android.widget.ProgressBar
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.zxing.*
 import com.google.zxing.common.HybridBinarizer
-import com.sogeti.MLClassification.Downloader.download
-import java.io.*
-import java.net.URL
+import com.wjthieme.MLClassification.Downloader.download
 
 class QRService(private val context: Activity): MultiAnalysis.Analyzer {
 

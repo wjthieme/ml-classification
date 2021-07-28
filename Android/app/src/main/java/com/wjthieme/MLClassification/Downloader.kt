@@ -1,8 +1,7 @@
-package com.sogeti.MLClassification
+package com.wjthieme.MLClassification
 
 import android.content.Context
-import com.sogeti.MLClassification.Application.Companion.modelUrl
-import java.io.*
+import com.wjthieme.MLClassification.Application.Companion.modelUrl
 import java.net.URL
 import java.security.MessageDigest
 

@@ -1,4 +1,4 @@
-package com.sogeti.MLClassification
+package com.wjthieme.MLClassification
 
 import android.content.Context
 import com.microsoft.appcenter.AppCenter
