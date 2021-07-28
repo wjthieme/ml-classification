@@ -5,4 +5,8 @@ target 'MLClassification' do
   pod 'AppCenter/Analytics', '4.1.1'
   pod 'AppCenter/Crashes', '4.1.1'
   pod 'AppCenter/Distribute', '4.1.1'
+  
+  target 'Tests' do
+    inherit! :search_paths
+  end
 end
