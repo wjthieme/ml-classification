@@ -53,7 +53,7 @@
                         <action selector="didPressSwitchButton" destination="-1" eventType="touchUpInside" id="iet-pi-fPi"/>
                     </connections>
                 </button>
-                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="q4Z-Pp-HWA">
+                <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="q4Z-Pp-HWA">
                     <rect key="frame" x="50" y="802" width="48" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="K3Z-gq-gJb"/>
