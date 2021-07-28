@@ -14,6 +14,6 @@ class BitmapTests {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.wjthieme.MLClassificationaa", appContext.packageName)
+        assertEquals("com.wjthieme.MLClassification", appContext.packageName)
     }
 }
