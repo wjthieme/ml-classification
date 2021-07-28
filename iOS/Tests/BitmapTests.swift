@@ -16,7 +16,7 @@ class BitmapTests: XCTestCase {
         let bitmap = image.toBitmap()
         
         let floats = [Float](unsafeData: bitmap)
-        XCTAssertEqual(floats, [1.0, 0, 0])
+        XCTAssertEqual(floats, [1.0, 0, 1.0])
     }
     
     func testGreen() throws {
