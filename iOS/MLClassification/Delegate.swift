@@ -14,7 +14,7 @@ import AppCenterDistribute
 @main
 class Delegate: UIResponder, UIApplicationDelegate {
     
-    private static let appCenterSecret = "d6e99039-e8ed-4558-9a9c-f18d5f1f2fe1"
+    private static let appCenterClientId = "d6e99039-e8ed-4558-9a9c-f18d5f1f2fe1"
     private static let homeDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     static let modelUrl = homeDir.appendingPathComponent("model.tflite")
     static let baseUrl = URL(string: "https://a.tmp.ninja/")!
@@ -23,7 +23,7 @@ class Delegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        AppCenter.start(withAppSecret: Delegate.appCenterSecret, services: [Analytics.self, Crashes.self, Distribute.self])
+        AppCenter.start(withAppSecret: Delegate.appCenterClientId, services: [Analytics.self, Crashes.self, Distribute.self])
         
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
             let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
