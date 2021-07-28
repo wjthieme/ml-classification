@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  MLClassification
+
+  Created by Wilhelm Thieme on 11/07/2021.
+  
+*/
+"settings" = "Settings";
+"cameraAuthrorisation" = "Please give permission for the camera to use the app.";
+"downloadError" = "Error downloading";
+"match" = "Matching face detected";
+"noMatch" = "Non-matching face detected";
+"noFace" = "No face detected";
+"predictionError" = "Prediction error";
+"ok" = "Ok";
+

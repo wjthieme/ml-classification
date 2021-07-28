@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Controller" customModule="MLClassification" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicator" destination="q4Z-Pp-HWA" id="2TU-MT-pXI"/>
+                <outlet property="predictionLabel" destination="Rnu-Tj-VtD" id="bRc-8x-DhK"/>
+                <outlet property="view" destination="iN0-l3-epB" id="BC2-k3-Rbh"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rnu-Tj-VtD">
+                    <rect key="frame" x="79" y="94" width="256" height="48"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="256" id="0Xp-OE-ERC"/>
+                        <constraint firstAttribute="height" constant="48" id="B4K-WK-mlO"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="24"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerCurve" value="continuous"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rn5-H3-wdM">
+                    <rect key="frame" x="316" y="802" width="48" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="CmY-im-lbq"/>
+                        <constraint firstAttribute="width" constant="48" id="s1p-hP-aHd"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal">
+                        <imageReference key="image" image="arrow.triangle.2.circlepath.camera.fill" catalog="system" symbolScale="large"/>
+                    </state>
+                    <connections>
+                        <action selector="didPressSwitchButton" destination="-1" eventType="touchUpInside" id="iet-pi-fPi"/>
+                    </connections>
+                </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="q4Z-Pp-HWA">
+                    <rect key="frame" x="50" y="802" width="48" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="K3Z-gq-gJb"/>
+                        <constraint firstAttribute="width" constant="48" id="bLY-i1-CTx"/>
+                    </constraints>
+                    <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </activityIndicatorView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Rnu-Tj-VtD" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="50" id="7Fy-zt-FVt"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rn5-H3-wdM" secondAttribute="trailing" constant="50" id="JA8-1t-VyJ"/>
+                <constraint firstItem="q4Z-Pp-HWA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="50" id="K3c-cR-rDs"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="q4Z-Pp-HWA" secondAttribute="bottom" constant="12" id="W4G-qM-qs2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="rn5-H3-wdM" secondAttribute="bottom" constant="12" id="aD3-wg-MuB"/>
+                <constraint firstItem="Rnu-Tj-VtD" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="sl8-go-4Zw"/>
+            </constraints>
+            <point key="canvasLocation" x="114" y="74"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="arrow.triangle.2.circlepath.camera.fill" catalog="system" width="128" height="94"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    tools:context=".Activity">
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/camera_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        tools:text="Placeholder"
+        android:id="@+id/prediction_view"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rounded_corners"
+        android:visibility="gone"
+        android:layout_marginVertical="75dp"
+        android:gravity="center"
+        style="@android:style/Widget.Holo.DropDownItem" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.Holo.ProgressBar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="75dp"
+        android:visibility="gone"/>
+
+    <ImageButton
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/switch_button"
+        android:src="@drawable/ic_camera_front"
+        style="@android:style/Widget.Holo.Button.Borderless"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>
