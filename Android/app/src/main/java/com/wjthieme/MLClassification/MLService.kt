@@ -21,6 +21,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 class MLService(private val context: Activity): MultiAnalysis.Analyzer, BroadcastReceiver() {
 
+    var rotationDegrees: Float = 90f
     private var model: Interpreter? = null
     private val predictionView: TextView
     private val isPaused = AtomicBoolean(false)
@@ -43,7 +44,7 @@ class MLService(private val context: Activity): MultiAnalysis.Analyzer, Broadcas
 
             val output = TensorBuffer.createFixedSize(outputTemplate.shape(), outputTemplate.dataType())
             val input = image
-                .rotate(90f)
+                .rotate(rotationDegrees)
                 .crop(1f)
                 .resize(Size(inputTemplate.shape()[1], inputTemplate.shape()[2]))
                 .toBuffer(inputTemplate.dataType())
