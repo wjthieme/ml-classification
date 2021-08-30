@@ -46,13 +46,7 @@ class MLService: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
             
             DispatchQueue.main.async { [self] in
                 controller?.predictionLabel?.isHidden = false
-                var pred: String
-                switch max.offset {
-                case 0: pred = NSLocalizedString("match", comment: "")
-                case 1: pred = NSLocalizedString("noFace", comment: "")
-                case 2: pred = NSLocalizedString("noMatch", comment: "")
-                default: pred = NSLocalizedString("predictionError", comment: "")
-                }
+                let pred = NSLocalizedString(max.offset == 0 ? "face" : "noFace", comment: "")
                 let prob = Int(max.element * 100)
                 controller?.predictionLabel?.text = "\(pred) (\(prob)%)"
             }

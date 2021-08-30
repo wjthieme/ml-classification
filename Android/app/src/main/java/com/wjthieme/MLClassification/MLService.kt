@@ -53,12 +53,7 @@ class MLService(private val context: Activity): MultiAnalysis.Analyzer, Broadcas
             val max = output.floatArray.withIndex().maxByOrNull { it.value }!!
 
             context.runOnUiThread {
-                val pred = context.getText(when (max.index) {
-                    0 -> R.string.match
-                    1 -> R.string.no_face
-                    2 -> R.string.no_match
-                    else -> R.string.prediction_error
-                })
+                val pred = context.getText(if (max.index == 0) R.string.face else R.string.no_face)
                 val prob = (max.value * 100).toInt()
                 predictionView.visibility = View.VISIBLE
                 predictionView.text = "$pred ($prob%)"
