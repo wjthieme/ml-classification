@@ -6,11 +6,6 @@
 
 MLClassification is a repository for training your first Deep Neural Network (DNN). This easy to use setup uses Keras (TensorFlow) to train a DNN in Google Colabatory. I've included an iOS and Android app which can be used to run inference on your trained model.
 
-### TODO
-
-- [ ] iOS Installable Build
-- [ ] Remove adding own data
-
 # Notebook
 [![Colab](https://img.shields.io/badge/release-colab-blue)](https://colab.research.google.com/github/wjthieme/ml-classification/blob/main/Notebook.ipynb)
 
