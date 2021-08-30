@@ -21,6 +21,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 class MLService(private val context: Activity): MultiAnalysis.Analyzer, BroadcastReceiver() {
 
+    var rotationDegrees: Float = 90f
     private var model: Interpreter? = null
     private val predictionView: TextView
     private val isPaused = AtomicBoolean(false)
@@ -43,7 +44,7 @@ class MLService(private val context: Activity): MultiAnalysis.Analyzer, Broadcas
 
             val output = TensorBuffer.createFixedSize(outputTemplate.shape(), outputTemplate.dataType())
             val input = image
-                .rotate(90f)
+                .rotate(rotationDegrees)
                 .crop(1f)
                 .resize(Size(inputTemplate.shape()[1], inputTemplate.shape()[2]))
                 .toBuffer(inputTemplate.dataType())
@@ -53,12 +54,7 @@ class MLService(private val context: Activity): MultiAnalysis.Analyzer, Broadcas
             val max = output.floatArray.withIndex().maxByOrNull { it.value }!!
 
             context.runOnUiThread {
-                val pred = context.getText(when (max.index) {
-                    0 -> R.string.match
-                    1 -> R.string.no_face
-                    2 -> R.string.no_match
-                    else -> R.string.prediction_error
-                })
+                val pred = context.getText(if (max.index == 0) R.string.face else R.string.no_face)
                 val prob = (max.value * 100).toInt()
                 predictionView.visibility = View.VISIBLE
                 predictionView.text = "$pred ($prob%)"

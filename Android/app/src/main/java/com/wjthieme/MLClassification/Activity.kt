@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Size
+import android.view.Surface
 import android.view.WindowManager
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
@@ -45,9 +46,11 @@ class Activity: AppCompatActivity() {
             if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) {
                 cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
                 switchButton.setImageResource(R.drawable.ic_camera_rear)
+                mlService.rotationDegrees = -90f
             } else {
                 cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
                 switchButton.setImageResource(R.drawable.ic_camera_front)
+                mlService.rotationDegrees = 90f
             }
             shouldStartCamera()
         }

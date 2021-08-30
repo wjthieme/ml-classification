@@ -49,9 +49,9 @@ class MultiAnalysis: ImageAnalysis.Analyzer {
     }
 
     private fun ImageProxy.toBitmap(): Bitmap {
-        val yBuffer = planes[0].buffer // Y
-        val uBuffer = planes[1].buffer // U
-        val vBuffer = planes[2].buffer // V
+        val yBuffer = planes[0].buffer
+        val uBuffer = planes[1].buffer
+        val vBuffer = planes[2].buffer
 
         val ySize = yBuffer.remaining()
         val uSize = uBuffer.remaining()
