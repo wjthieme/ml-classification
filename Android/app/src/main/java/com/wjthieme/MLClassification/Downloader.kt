@@ -8,7 +8,7 @@ import java.security.MessageDigest
 object Downloader {
 
     fun Context.download(id: String, hash: String, completion: (Exception?) -> Unit) {
-        val url = Application.baseUrl.append(id)
+        val url = if (id == "test") Application.testModel else Application.baseUrl.append(id)
         Thread {
             try {
                 val connection = url.openConnection()

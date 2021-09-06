@@ -1,10 +1,10 @@
 platform :ios, '13.0'
 
 target 'MLClassification' do
-  pod 'TensorFlowLiteSwift', '2.5.0'
-  pod 'AppCenter/Analytics', '4.1.1'
-  pod 'AppCenter/Crashes', '4.1.1'
-  pod 'AppCenter/Distribute', '4.1.1'
+  pod 'TensorFlowLiteSwift', '2.6.0'
+  pod 'AppCenter/Analytics', '4.2.0'
+  pod 'AppCenter/Crashes', '4.2.0'
+  pod 'AppCenter/Distribute', '4.2.0'
   
   target 'Tests' do
     inherit! :search_paths

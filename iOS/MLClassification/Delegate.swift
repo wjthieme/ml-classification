@@ -18,6 +18,7 @@ class Delegate: UIResponder, UIApplicationDelegate {
     private static let homeDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     static let modelUrl = homeDir.appendingPathComponent("model.tflite")
     static let baseUrl = URL(string: "https://a.tmp.ninja/")!
+    static let testModel = URL(string: "https://github.com/wjthieme/ml-classification/blob/main/model.tflite?raw=true")!
 
     internal var window: UIWindow?
 

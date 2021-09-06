@@ -15,6 +15,7 @@ class Application: android.app.Application() {
         fun Context.modelUrl() = File(homeDir(), "model.tflite")
         const val appCenterClientId = "c910f076-abd7-45b6-bfb6-86b4f0cbdd65"
         val baseUrl = URL("https://a.tmp.ninja/")
+        val testModel = URL("https://github.com/wjthieme/ml-classification/blob/main/model.tflite?raw=true")
     }
 
     override fun onCreate() {

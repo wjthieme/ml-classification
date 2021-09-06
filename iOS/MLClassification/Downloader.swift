@@ -13,7 +13,7 @@ import typealias CommonCrypto.CC_LONG
 class Downloader {
     
     static func download(id: String, hash: String, completion: @escaping ((Error?) -> Void)) {
-        let url = Delegate.baseUrl.appendingPathComponent(id)
+        let url = id == "test" ? Delegate.testModel : Delegate.baseUrl.appendingPathComponent(id)
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             do {
