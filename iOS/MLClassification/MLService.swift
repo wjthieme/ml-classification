@@ -12,6 +12,7 @@ import TensorFlowLite
 class MLService: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     private var model: Interpreter?
     private weak var controller: Controller?
+    private var updating = false
     
     init(_ controller: Controller) {
         self.controller = controller
@@ -21,12 +22,15 @@ class MLService: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     @objc private func tryLoadModel() {
+        updating = true
         model = try? Interpreter(modelPath: Delegate.modelUrl.path)
         try? model?.allocateTensors()
+        updating = false
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         do {
+            if updating { throw CocoaError(.userCancelled) }
             guard let model = model else { throw CocoaError(.fileNoSuchFile) }
             guard let buffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { throw CocoaError(.coderReadCorrupt) }
             let size = try model.input(at: 0)
@@ -38,7 +42,6 @@ class MLService: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
             
             try model.copy(input.toBitmap(), toInputAt: 0)
             try model.invoke()
-            
             let output = try model.output(at: 0).data
             
             let floats = [Float](unsafeData: output)!
