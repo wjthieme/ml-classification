@@ -22,15 +22,12 @@ class MLService: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     @objc private func tryLoadModel() {
-        updating = true
         model = try? Interpreter(modelPath: Delegate.modelUrl.path)
         try? model?.allocateTensors()
-        updating = false
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         do {
-            if updating { throw CocoaError(.userCancelled) }
             guard let model = model else { throw CocoaError(.fileNoSuchFile) }
             guard let buffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { throw CocoaError(.coderReadCorrupt) }
             let size = try model.input(at: 0)
